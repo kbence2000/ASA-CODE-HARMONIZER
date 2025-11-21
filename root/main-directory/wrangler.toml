@@ -1,0 +1,6 @@
+name = "asa-code-harmonizer"
+main = "src/index.js"
+compatibility_date = "2024-09-01"
+
+[vars]
+BACKEND_URL = "https://YOUR-ASABACKEND-URL"
