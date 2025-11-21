@@ -1,0 +1,1 @@
+npm install express cors body-parser node-fetch openai
