@@ -2,16 +2,15 @@ export default {
   async fetch(req, env) {
     const url = new URL(req.url);
 
-    // csak /harmonize endpointot proxizunk
     if (!url.pathname.startsWith("/harmonize")) {
-      return new Response("ASA Harmonizer Worker OK", { status: 200 });
+      return new Response("ASA Harmonizer Worker Online", { status: 200 });
     }
 
-    const endpoint = url.pathname.replace("/harmonize", "/api/harmonize");
+    // /harmonize/preview → /api/harmonize/preview
+    // /harmonize/apply   → /api/harmonize/apply
+    const endpoint = "/api" + url.pathname;
 
-    const target = env.BACKEND_URL + endpoint;
-
-    return fetch(target, {
+    return fetch(env.BACKEND_URL + endpoint, {
       method: req.method,
       headers: req.headers,
       body: req.body
